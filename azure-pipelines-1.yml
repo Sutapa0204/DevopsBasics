@@ -34,10 +34,11 @@ stages:
               mavenVersionOption: 'Default'  # Uses Maven version specified in the agent
               mavenPomFile: 'pom.xml'
               goals: 'clean install'
-              options: '-Dmaven.test.failure.ignore=true'  # Continue even if tests fail
-              publishJUnitResults: true
-              testResultsFiles: '**/surefire-reports/*.xml'
+              #options: '-Dmaven.test.failure.ignore=true'  # Continue even if tests fail
+              #publishJUnitResults: true
+              #testResultsFiles: '**/surefire-reports/*.xml'
 
           # Step 3: Publish build artifact
-          - publish: $(buildDir)
-            artifact: $(buildArtifactName)
+
+           
+         
