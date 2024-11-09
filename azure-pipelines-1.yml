@@ -1,0 +1,43 @@
+# Trigger pipeline on changes to main branch
+trigger:
+  branches:
+    include:
+      - main  # Replace with the branch you want to trigger the build
+
+# Use an Ubuntu-based agent pool for Java and Maven
+pool:
+  vmImage: 'ubuntu-latest'
+
+# Define variables for build process
+variables:
+  mavenVersion: '3.8.5'   # Replace with the Maven version you need
+  javaVersion: '11'        # Replace with your required Java version
+  buildArtifactName: 'myapp.war'  # Replace with the desired output name
+  buildDir: 'target'       # Default Maven output directory
+
+stages:
+  - stage: Build
+    jobs:
+      - job: MavenBuild
+        displayName: 'Build Java Project with Maven'
+        
+        steps:
+          # Step 1: Set up JDK
+          - task: UseJavaVersion@1
+            inputs:
+              versionSpec: $(javaVersion)
+              architecture: 'x64'
+
+          # Step 2: Install Maven
+          - task: Maven@3
+            inputs:
+              mavenVersionOption: 'Default'  # Uses Maven version specified in the agent
+              mavenPomFile: 'pom.xml'
+              goals: 'clean install'
+              options: '-Dmaven.test.failure.ignore=true'  # Continue even if tests fail
+              publishJUnitResults: true
+              testResultsFiles: '**/surefire-reports/*.xml'
+
+          # Step 3: Publish build artifact
+          - publish: $(buildDir)
+            artifact: $(buildArtifactName)
