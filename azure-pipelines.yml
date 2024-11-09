@@ -30,6 +30,6 @@ steps:
     containerRegistry: 'docker'
     repository: 'sutapa0204/sutaparoydemorepo'
     command: 'buildAndPush'
-    Dockerfile: '**/Dockerfile'
+    Dockerfile: 'AzureDockerfile'
 
 
