@@ -37,8 +37,19 @@ stages:
               #options: '-Dmaven.test.failure.ignore=true'  # Continue even if tests fail
               #publishJUnitResults: true
               #testResultsFiles: '**/surefire-reports/*.xml'
+          - task: CopyFiles@2
+            inputs:
+              contents: '$(buildDir)/$(buildArtifactName)'  # Path to the generated .war file
+              targetFolder: $(Build.ArtifactStagingDirectory)
 
           # Step 3: Publish build artifact
+          - task: PublishBuildArtifacts@1
+            inputs:
+              pathToPublish: $(Build.ArtifactStagingDirectory)
+              artifactName: 'java_project_artifact'
+              publishLocation: 'Container'
+
+          
 
            
          
