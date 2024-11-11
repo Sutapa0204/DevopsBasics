@@ -39,7 +39,7 @@ stages:
               #testResultsFiles: '**/surefire-reports/*.xml'
           - task: CopyFiles@2
             inputs:
-              contents: 'target/myapp.war'  # Path to the generated .war file
+              contents: '**/.war'  # Path to the generated .war file
               targetFolder: $(Build.ArtifactStagingDirectory)
           - script: ls -R $(Build.ArtifactStagingDirectory)
             displayName: 'List contents of artifact staging directory'
