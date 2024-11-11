@@ -29,7 +29,7 @@ stages:
              # architecture: 'x64'
 
           # Step 2: Install Maven
-          - task: Maven@3
+          - task: Maven@4
             inputs:
               mavenVersionOption: 'Default'  # Uses Maven version specified in the agent
               mavenPomFile: 'pom.xml'
@@ -39,7 +39,7 @@ stages:
               #testResultsFiles: '**/surefire-reports/*.xml'
           - task: CopyFiles@2
             inputs:
-              contents: '$(buildDir)/$(buildArtifactName)'  # Path to the generated .war file
+              contents: 'target/myapp.war'  # Path to the generated .war file
               targetFolder: $(Build.ArtifactStagingDirectory)
 
           # Step 3: Publish build artifact
