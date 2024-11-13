@@ -16,7 +16,7 @@ steps:
     rootFolderOrFile: '$(System.DefaultWorkingDirectory)/webapp/target/webapp.war'  # Adjust to your build output directory
     includeRootFolder: false
     archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/'  # Name of the zip file
+    archiveFile: '$(Build.ArtifactStagingDirectory)'  # Name of the zip file
 
 - task: PublishPipelineArtifact@1
   inputs:
