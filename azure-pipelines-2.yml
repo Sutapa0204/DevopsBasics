@@ -16,11 +16,11 @@ steps:
     rootFolderOrFile: '$(System.DefaultWorkingDirectory)/webapp/target/webapp.war'  # Adjust to your build output directory
     includeRootFolder: false
     archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)'  # Name of the zip file
+    archiveFile: '$(Build.ArtifactStagingDirectory)/myapp.zip'  # Name of the zip file
 
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '$(Build.ArtifactStagingDirectory)/myapp.zip'
+    targetPath: '$(Build.ArtifactStagingDirectory)'
     artifact: 'MyJavaApp'
 
 - task: S3Upload@1
