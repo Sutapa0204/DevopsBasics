@@ -20,7 +20,7 @@ steps:
 
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '$(Build.ArtifactStagingDirectory)/webapp.zip'
+    targetPath: '$(Build.ArtifactStagingDirectory)/myapp.zip'
     artifact: 'MyJavaApp'
 
 - task: S3Upload@1
